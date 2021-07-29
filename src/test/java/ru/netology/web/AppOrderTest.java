@@ -8,29 +8,38 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppOrderTest {
+
     private WebDriver driver;
 
     @BeforeAll
-    static void setUpBrowserDriver(){
-        System.setProperty("webdriver.chrome.driver","E:\\Projects(Study)\\HW_TestUI_2.1\\driver\\chromedriver.exe");
+    static void setUpBrowserDriver() {
+        System.setProperty("webdriver.chrome.driver", "E:\\Projects(Study)\\HW_TestUI_2.1\\driver\\chromedriver.exe");
     }
+
     @BeforeEach
-    void setUpDriver(){
-        driver = new ChromeDriver();
+    void setUpDriver() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
+
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         driver.quit();
         driver = null;
     }
+
     @Test
-    void shouldFillInTheGaps(){
+    void shouldFillInTheGaps() {
         driver.get("http://localhost:9999/");
         List<WebElement> elements = driver.findElements(By.className("input__control"));
         elements.get(0).sendKeys("Филимонов Илья");
