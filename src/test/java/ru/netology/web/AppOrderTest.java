@@ -1,5 +1,6 @@
 package ru.netology.web;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +21,7 @@ public class AppOrderTest {
 
     @BeforeAll
     static void setUpBrowserDriver() {
-        System.setProperty("webdriver.chrome.driver", "E:\\Projects(Study)\\HW_TestUI_2.1\\driver\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
